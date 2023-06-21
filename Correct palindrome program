@@ -1,0 +1,43 @@
+package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func isPalidrome(n int) bool {
+	str := strconv.Itoa(n)
+	length := len(str)
+	for i := 0; i < length/2; i++ {
+		if str[i] != str[length-i-1] {
+			return false
+		}
+
+	}
+	return true
+}
+func largestPalindromeProduct() (int, int, int) {
+	largestPalindrome := 0
+	var multiplcand1, multiplcand2 int
+	for i := 99; i >= 10; i-- {
+		for j := i; j >= 10; j-- {
+			product := i * j
+			if product < largestPalindrome {
+				break
+			}
+			if isPalidrome(product) && product > largestPalindrome {
+				largestPalindrome = product
+				multiplcand1 = i
+				multiplcand2 = j
+
+			}
+		}
+	}
+	return largestPalindrome, multiplcand1, multiplcand2
+
+}
+func main() {
+	result, multiplcand1, multiplcand2 := largestPalindromeProduct()
+	fmt.Printf("the largest palindrome is : %d \n", result)
+	fmt.Printf("the multipicands are: %d and %d \n", multiplcand1, multiplcand2)
+}
