@@ -1,0 +1,44 @@
+//largest palindrome product
+
+package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func isPalindrome(n int) bool {
+	str := strconv.Itoa(n)
+	lenght := len(str)
+	for i := 0; i < lenght/2; i++ {
+		if str[i] != str[i-1] {
+			return false
+		}
+	}
+	return true
+}
+func largestPalindromeproduct() (int, int, int) {
+	largestPalindrome := 0
+	var multiplicand1, multiplicand2 int
+	for i := 999; i >= 100; i-- {
+		for j := i; j >= 100; j-- {
+			product := i * j
+			if product < largestPalindrome {
+				//no need to continue the inner loop since the product
+				//will only become smaller as j decreases
+				break
+			}
+			if isPalindrome(product) && product > largestPalindrome {
+				largestPalindrome = product
+				multiplicand1 = i
+				multiplicand2 = j
+			}
+		}
+	}
+	return largestPalindrome, multiplicand1, multiplicand2
+}
+func main() {
+	result, multiplicand1, multiplicand2 := largestPalindromeproduct()
+	fmt.Printf("The largest palindrome product is : %d ", result)
+	fmt.Printf("The multipliccands are : %d and %d \n ", multiplicand1, multiplicand2)
+}
