@@ -40,5 +40,5 @@ func largestPalindromeproduct() (int, int, int) {
 func main() {
 	result, multiplicand1, multiplicand2 := largestPalindromeproduct()
 	fmt.Printf("The largest palindrome product is : %d\n ", result)
-	fmt.Printf("The multipliccands are : %d and %d \n ", multiplicand1, multiplicand2)
+	fmt.Printf("The multiplicands are : %d and %d \n ", multiplicand1, multiplicand2)
 }
